@@ -1,0 +1,155 @@
+/**
+ * Style for wp-editor
+ * Manually add any styles from your main stylesheet that would apply to content areas
+ * so that the editor looks as close to the frontend of the site as possible.
+ */
+
+// Use an embedded Google font (example)
+// @import url('//fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900');
+
+body > :first-child {
+	margin-top: 15px;
+}
+body > :last-child {
+	margin-bottom: 0;
+}
+
+// WordPress required classes
+
+// Required to use Bootstrap
+
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import './variables'; // Import our Variable Overrides
+@import './forms';
+@import './components/buttons';
+@import './components/rte';
+
+body {
+	padding: 0;
+	font-family: $font-family-sans-serif;
+	@include rte;
+	@import './components/**/*';
+
+	ul {
+		margin-left: 0;
+	}
+
+	.editor-post-title__input {
+		&.has-icon {
+			display: flex;
+			align-items: center;
+		}
+	}
+}
+
+/*! purgecss start ignore */
+.mce-content-body {
+	// Let's remove the background off our editor. It looks bad.
+	background: white !important;
+	color: black !important;
+}
+
+// Lets override Gutenbergs awful defaults!
+// We'll just let the block dictate its own width!
+.wp-block {
+	max-width: 100%;
+}
+
+@media (min-width: 782px) {
+	.edit-post-layout.is-sidebar-opened .edit-post-layout__content {
+		margin-right: 350px;
+	}
+}
+
+.edit-post-layout.is-sidebar-opened .edit-post-sidebar,
+.edit-post-layout.is-sidebar-opened .edit-post-plugin-sidebar__sidebar-layout {
+	/* Sidebar covers screen on mobile */
+	width: 100%;
+}
+
+@media (min-width: 782px) {
+	.edit-post-sidebar {
+		width: 350px !important;
+	}
+}
+
+// Bye bye default padding. No idea why you're here.
+.block-editor-block-list__layout,
+.block-editor-block-list__block,
+.block-editor-block-list__block-edit {
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+
+// This one might cause issues. We'll see. Removing the spacing between our block elements.
+[data-block] {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+.editor-styles-wrapper ul,
+.editor-styles-wrapper ol {
+	margin-bottom: auto;
+	margin-left: auto;
+	padding-left: auto;
+	list-style: inherit !important;
+}
+
+/*.block-editor-block-list__block.is-multi-selected > .block-editor-block-mover,
+.block-editor-block-list__block
+	> .block-editor-block-list__block-edit
+	> .block-editor-block-mover {
+	top: 0;
+	left: 0;
+	margin-top: 0 !important;
+}*/
+
+// Page title block.
+.editor-post-title {
+	margin-top: -65px;
+	background: white;
+}
+
+.editor-post-permalink {
+	display: none !important;
+}
+
+.editor-post-title__block {
+	margin-bottom: 0;
+}
+
+.block-editor-block-list__layout
+	.block-editor-block-list__block
+	.block-editor-block-list__block-edit::before {
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+}
+
+.block-editor-block-list__breadcrumb {
+	top: 0 !important;
+	left: 0 !important;
+}
+
+.editor-post-title__block .editor-post-title__input {
+	padding-top: 0;
+	padding-bottom: 0;
+	border: none;
+	color: $color-black;
+	font-family: $font-family-sans-serif;
+	box-shadow: none !important;
+}
+
+.block-editor-block-types-list__list-item {
+	&:before {
+		display: none !important;
+	}
+}
+/*! purgecss end ignore */

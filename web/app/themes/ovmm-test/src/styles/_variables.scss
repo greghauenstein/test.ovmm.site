@@ -1,0 +1,46 @@
+/*
+	1. COLOR
+	2. FONT
+*/
+
+/* COLOR */
+$color-white: #fff;
+$color-gray-light: #c5c5c5;
+$color-gray: #7c7c7c;
+$color-gray-dark: #5d5d5d;
+$color-black: #030303;
+$color-blue-soft-sky: #f6f9fa;
+$color-primary: #019991;
+
+:root {
+	/* COLOR */
+	--color-white: #{$color-white};
+	--color-gray-light: #{$color-gray-light};
+	--color-gray: #{$color-gray};
+	--color-gray-dark: #{$color-gray-dark};
+	--color-black: #{$color-black};
+	--color-black--30: #{rgba($color-black, 0.3)};
+	--color-blue-soft-sky: #{$color-blue-soft-sky};
+	--color-primary: #{$color-primary};
+	--color-primary--50: #{rgba($color-primary, 0.5)};
+
+	/* FONT WEIGHT */
+	--font-weight-bold: 700;
+	--font-weight-semibold: 500;
+	--font-weight-regular: 400;
+	--font-weight-light: 300;
+
+	/* FONT SIZE */
+	--font-size-14: 14px;
+	--font-size-16: 16px;
+	--font-size-18: 18px;
+	--font-size-20: 20px;
+	--font-size-24: 24px;
+	--font-size-28: 28px;
+	--font-size-32: 32px;
+	--font-size-44: 44px;
+
+	/* FONT FAMILY */
+	--font-family-base: 'Helvetica Neue', Arial, sans-serif;
+	--font-family-icons: 'Font Awesome 5 Pro';
+}

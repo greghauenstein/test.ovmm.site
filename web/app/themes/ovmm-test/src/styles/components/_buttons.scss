@@ -1,0 +1,128 @@
+@import '../variables';
+@import '../mixins';
+
+/*
+	These :root variables can be updated on a per-project
+	basis and are designed to be the only properties that
+	need to be updated for each button variation.
+*/
+
+:root {
+	//.btn base
+	--btn-padding-y: 8px;
+	--btn-padding-x: 20px;
+	--btn-border-radius: 4px;
+	--btn-border: 1px solid transparent;
+	--btn-background-color: var(--color-primary);
+	--btn-color: var(--color-white);
+	--btn-font-family: var(--font-family-base);
+	--btn-font-weight: var(--font-weight-semibold);
+	--btn-text-decoration: none;
+	--btn-white-space: nowrap;
+	--btn-font-size: var(--font-size-16);
+	--btn-line-height: 1.25;
+	--btn-hover-background-color: var(--color-black);
+	--btn-focus-border-width: 3px;
+	--btn-focus-border-color: var(--color-black);
+	--btn-focus-border-radius: 6px;
+	--btn-focus-offset: -6px;
+	--btn-disabled-opacity: 0.3;
+
+	//.btn--outline
+	--btn--outline-border-color: var(--color-primary);
+	--btn--outline-color: var(--color-primary);
+	--btn--outline-hover-background-color: var(--color-primary);
+	--btn--outline-hover-color: var(--color-white);
+
+	//.btn__icon
+	--btn-icon-spacing: 8px;
+}
+
+.btn {
+	//pulled from Bootstrap definition, then tweaked for JB
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	padding: var(--btn-padding-y) var(--btn-padding-x);
+	border: var(--btn-border);
+	border-radius: var(--btn-border-radius);
+	background-color: var(--btn-background-color);
+	color: var(--btn-color);
+	font-weight: var(--btn-font-weight);
+	font-family: var(--btn-font-family);
+	justify-content: center;
+	text-decoration: var(--btn-text-decoration);
+	white-space: var(--btn-white-space);
+	vertical-align: middle;
+	user-select: none;
+	@include transition(background-color);
+
+	&::before {
+		position: absolute;
+		top: var(--btn-focus-offset);
+		right: var(--btn-focus-offset);
+		bottom: var(--btn-focus-offset);
+		left: var(--btn-focus-offset);
+		border: var(--btn-focus-border-width) solid transparent;
+		border-radius: var(--btn-focus-border-radius);
+		content: '';
+		pointer-events: none;
+		@include transition(border-color);
+	}
+
+	&:hover,
+	&:focus {
+		background-color: var(--btn-hover-background-color);
+	}
+
+	&:focus {
+		outline: 0;
+
+		&::before {
+			border-color: var(--btn-focus-border-color);
+		}
+	}
+
+	&.disabled,
+	&:disabled {
+		opacity: var(--btn-disabled-opacity);
+		pointer-events: none;
+	}
+}
+.btn--outline {
+	border-color: var(--btn--outline-border-color);
+	background-color: transparent;
+	color: var(--btn--outline-color);
+	transition-property: background-color, color;
+
+	&:hover,
+	&:focus {
+		background-color: var(--btn--outline-hover-background-color);
+		color: var(--btn--outline-hover-color);
+	}
+}
+
+.btn__icon-left {
+	margin-right: var(--btn-icon-spacing);
+}
+
+.btn__icon-right {
+	margin-left: var(--btn-icon-spacing);
+
+	.btn.has-anim & {
+		@include transition(all);
+		transition-property: margin-right, margin-left;
+	}
+	.btn.has-anim:hover &,
+	.btn.has-anim:focus & {
+		margin-right: calc((var(--btn-icon-spacing) / 2) * -1);
+		margin-left: calc(
+			var(--btn-icon-spacing) + (var(--btn-icon-spacing) / 2)
+		);
+	}
+}
+
+.btn-block {
+	//used Bootstrap naming
+	width: 100%;
+}

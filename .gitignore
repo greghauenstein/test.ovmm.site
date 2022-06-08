@@ -1,0 +1,61 @@
+## Application
+web/app/plugins/*
+!web/app/plugins/.gitkeep
+web/app/mu-plugins/*/
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+web/app/debug.log
+
+## WordPress
+web/wp
+
+## Dotenv
+.env
+!.env.example
+
+## Composer
+vendor/*
+!vendor/.gitkeep
+
+## Node
+node_modules
+
+## Capistrano
+log/*
+
+## Backups
+config/backup
+
+## Plugin files
+# - Query Monitor, used locally in development
+web/app/db.php
+
+# - Next AD Integration, log file
+web/app/nadi-debug.log
+
+# - WP Rocket
+web/app/cache/*
+web/app/wp-rocket-config/*
+
+## Production assets
+# - These should match the files that gulp is creating in the gulpfile
+web/app/themes/**/dist
+
+# Asset maps
+web/app/themes/**/*.map
+
+## OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+/nbproject
+/.project
+/.settings
+/.buildpath
+.idea
+.history

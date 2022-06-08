@@ -1,0 +1,36 @@
+// Required to use Bootstrap
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+
+// Grid
+@import './bootstrap/scss/grid';
+
+// Font Awesome (Not Required)
+@import './vendor/font-awesome/fontawesome';
+@import './vendor/font-awesome/regular';
+@import './vendor/font-awesome/solid';
+@import './vendor/font-awesome/brands';
+@import './vendor/font-awesome/light';
+
+// Globals for margin & padding
+@import './globals/_spacing';
+
+// Global base styles
+@import './_base';
+
+// Tables
+@import './_tables';
+
+// Forms
+@import './_forms';
+
+// Typography
+@import './_type';
+
+@import 'components/buttons';
+
+// Print
+@import 'bootstrap/scss/print';

@@ -1,0 +1,60 @@
+@import './base';
+@import './archives/editor';
+@import './audio/editor';
+@import './block/editor';
+@import './button/editor';
+@import './buttons/editor';
+@import './categories/editor';
+@import './code/editor';
+@import './columns/editor';
+@import './cover/editor';
+@import './embed/editor';
+@import './file/editor';
+@import './classic/editor';
+@import './gallery/editor';
+@import './group/editor';
+@import './html/editor';
+@import './image/editor';
+@import './latest-comments/editor';
+@import './latest-posts/editor';
+@import './legacy-widget/editor';
+@import './media-text/editor';
+@import './more/editor';
+@import './navigation/editor';
+@import './navigation-link/editor';
+@import './nextpage/editor';
+@import './paragraph/editor';
+@import './pullquote/editor';
+@import './quote/editor';
+@import './rss/editor';
+@import './search/editor';
+@import './shortcode/editor';
+@import './social-link/editor';
+@import './social-links/editor';
+@import './spacer/editor';
+@import './subhead/editor';
+@import './table/editor';
+@import './tag-cloud/editor';
+@import './template-part/editor';
+@import './text-columns/editor';
+@import './verse/editor';
+@import './video/editor';
+
+/**
+ * Import styles from internal editor components used by the blocks.
+ */
+@import './block/edit-panel/editor';
+
+/**
+ * Editor Normalization Styles
+ *
+ * These are only output in the editor, but styles here are NOT prefixed .editor-styles-wrapper.
+ * This allows us to create normalization styles that are easily overridden by editor styles.
+ */
+
+// Provide every block with a default base margin. This margin provides a consistent spacing
+// between blocks in the editor.
+.editor-styles-wrapper .block-editor-block-list__block {
+	margin-top: $default-block-margin;
+	margin-bottom: $default-block-margin;
+}

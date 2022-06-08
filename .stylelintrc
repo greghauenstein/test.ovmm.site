@@ -1,0 +1,20 @@
+{
+	"plugins": [
+		"stylelint-order",
+		"stylelint-scss"
+	],
+	"rules": {
+		"value-no-vendor-prefix": true,
+		"selector-type-case": "lower",
+		"max-nesting-depth": 4,
+		"declaration-block-no-duplicate-properties": true,
+		"order/order": [
+			"custom-properties",
+			"declarations"
+		],
+		"order/properties-order": ["$variable", "position", "top", "right", "bottom", "left", "display", "width", "height", "min-width", "min-height", "max-width", "max-height", "margin", "margin-top", "margin-right", "margin-bottom", "margin-left", "padding", "padding-top", "padding-right", "padding-bottom", "padding-left", "border", "border-top", "border-right", "border-bottom", "border-left", "border-width", "border-color", "border-style", "border-radius", "outline", "outline-color", "outline-style", "outline-width", "background", "background-image", "background-color", "color", "font", "font-style", "font-variant", "font-weight", "font-stretch", "font-size", "font-height", "font-family", "text", "text-align", "text-indent", "text-transform", "text-decoration", "overflow", "transform" ]
+	},
+	"extends": [
+		"stylelint-config-prettier"
+	]
+}

@@ -1,0 +1,12 @@
+{# Base Layout Template #}
+{% include 'layouts/head.twig' %}
+{% include 'layouts/header.twig' %}
+
+<main id="content">
+	{% block page_layout %}
+		{% block content %}{% endblock %}
+		{% block bottom %}{% endblock %}
+	{% endblock %}
+</main>
+
+{% include 'layouts/footer.twig' %}

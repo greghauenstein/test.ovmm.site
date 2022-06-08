@@ -1,0 +1,114 @@
+# config valid only for current version of Capistrano
+lock "3.13.0"
+
+# Application name is normally the slug of a project,
+# e.g. barack-obama or kennedy
+set :application, "<%= @application %>"
+
+# Domain determines the folder the site will be deployed to, e.g. on the
+# staging server: /home/staging/public_html/[application].com. If this is
+# different from the application change it here. For example the application
+# name could be `barack-obama` but the domain would be `obama.org`
+set :domain,      "#{fetch(:application)}.com"
+
+# Repo defaults to the name of the application, if it is different change that here
+set :repo_url,    "git@github.com:greghauenstein/#{fetch(:application)}.git"
+
+# Theme Path - used in compiling the production assets, by default the
+# theme name will match the application name, if that's different change here.
+set :theme_name,  "#{fetch(:application)}"
+
+
+# Use branch specified in ENV if exists, otherwise ask and default to current branch
+if ENV['BRANCH']
+  set :branch, ENV['BRANCH']
+else
+  ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+end
+
+
+# Default value for keep_releases is 5
+# set :keep_releases, 5
+
+# Files and directories linked across deployments
+set :linked_files,  %w( .env )
+set :linked_dirs,   %w( web/app/uploads )
+
+# WP-CLI Configuration - common to all environments
+# - Check that WP_HOME exists since for some reason bitbucket pipelines
+# - isn't getting the WP_HOME variable set.
+if ENV['WP_HOME']
+  set :wpcli_local_url, ENV['WP_HOME']  # Local dev url
+end
+
+
+# If this is a network site set to true, if not leave as false. This is used
+# to tell wp-cli when it needs to pass the --network flag when running commands
+set :is_network_site, <%= @is_network_site == true ? 'true' : 'false' %>
+
+
+# Are any of the environments using ssl, if so set to true otherwise leave false.
+# This is used to get the correct urls and set them to the correct protocol.
+set :is_local_ssl,        false
+set :is_development_ssl,  true
+set :is_staging_ssl,      true
+set :is_production_ssl,   true
+
+
+##################################
+## Windows - set any windows specific settings here
+
+if Gem.win_platform?
+
+  # Change the default temp directory from /tmp
+  set :local_tmp_dir, "C:/Windows/Temp"
+
+  # Custom rsync path (default `rsync`)
+  # - If needed tell capistrano which specific version of rsync to use
+  set :wpcli_rsync_path, "C:/cygwin64/bin/rsync.exe"
+
+  # Custom rsync ssh path (default `ssh`)
+  # - If needed tells rsync which specific version of ssh to use. When
+  # - git bash is installed it uses it's own version of ssh which doesn't
+  # - work well with rsync when it's installed through cygwin. In that case
+  # - specify the installation path to cygwin's ssh so it is used.
+  set :wpcli_rsync_ssh_path, "C:/cygwin64/bin/ssh.exe"
+
+end
+
+
+##################################
+## Production Assets
+
+## Environment variables
+# Attempts to figure out the paths automatically, if the theme is named
+# differently than the application name change that above in `theme_name`
+
+set :theme_path,        Pathname.new( "web/app/themes/#{fetch(:theme_name)}" )
+set :local_app_path,    Pathname.new( Dir.pwd )
+set :local_theme_path,  fetch(:local_app_path).join(fetch(:theme_path))
+
+
+## Production Assets
+# Though really for any deployment environment just named production_assets
+# to make it clear what's happening. Add any additional compiled assets NOT
+# included in the repo, should match what the files gulp is creating.
+
+set :production_assets, [
+	"dist",
+].map { |path| Pathname.new(path) }
+
+##################################
+## Deployment Tasks: located in /lib/capistrano/tasks
+
+# Deploy production assets to the server, this runs gulp --production to
+# compile the assets which minifies the css and js
+before "deploy:updated", "deploy:assets:rsync"
+
+# Push environment variables up to the server
+before 'deploy:check:linked_files', 'config:push'
+
+# The update_option_paths task is not run by default
+# Note that you need to have WP-CLI installed on your server
+# Uncomment the following line to run it on deploys if needed
+after 'deploy:publishing', 'deploy:update_option_paths'

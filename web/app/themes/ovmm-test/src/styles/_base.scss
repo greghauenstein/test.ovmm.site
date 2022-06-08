@@ -1,0 +1,8 @@
+.outer-padding {
+	// No extra padding on mobile.
+
+	@include media-breakpoint-up(md) {
+		padding-right: 30px;
+		padding-left: 30px;
+	}
+}

@@ -1,0 +1,14 @@
+/*------------------------------------
+  PX to REM mixin
+------------------------------------*/
+
+$font-size-root: 16; // no units, you assume the font size base of most browsers is 16px.
+
+@function strip-unit($num) {
+	@return $num / ($num * 0 + 1);
+}
+
+// prem stands for  px to rem.
+@function prem($pxval, $base: $font-size-root) {
+	@return strip-unit($pxval) / $base * 1rem;
+}

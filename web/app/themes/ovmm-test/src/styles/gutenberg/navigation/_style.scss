@@ -1,0 +1,236 @@
+.wp-block-navigation {
+	& > ul {
+		position: relative;
+		display: block;
+		max-width: none;
+		margin: 0;
+		padding-left: 0;
+		list-style: none;
+
+		@include break-small {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		ul {
+			padding-left: 0;
+		}
+
+		li {
+			position: relative;
+			z-index: 1;
+
+			&:hover,
+			&:focus-within {
+				cursor: pointer;
+				z-index: 99999;
+			}
+
+			// Submenu Display
+			&:hover > ul,
+			&:focus-within > ul,
+			& ul:hover,
+			& ul:focus {
+				display: block;
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+
+		// ToDo: move navigation-link styles to navigation-link/style.scss
+		& > li {
+			& > a {
+				display: flex;
+				padding-left: 0;
+				align-items: center;
+
+				@include break-small {
+					padding-left: 16px;
+				}
+			}
+
+			&:first-of-type > a {
+				padding-left: 0;
+			}
+
+			&:last-of-type > a {
+				padding-right: 0;
+			}
+
+			.wp-block-navigation-link__submenu-icon {
+				margin-left: 4px;
+
+				svg {
+					fill: currentColor;
+				}
+			}
+		}
+
+		// Sub-menus Flyout
+		& > li > ul {
+			position: absolute;
+			top: 80%;
+			left: 0;
+			min-width: max-content;
+			margin: 0;
+			padding: 0 30px 0 10px;
+			border-width: 1px;
+			border-style: solid;
+			border-radius: 3px;
+			transform: translateY(0.6rem);
+			-webkit-box-shadow: 0 3px 30px rgba(25, 30, 35, 0.1);
+			-moz-box-shadow: 0 3px 30px rgba(25, 30, 35, 0.1);
+			box-shadow: 0 3px 30px rgba(25, 30, 35, 0.1);
+			opacity: 0;
+			transition: opacity 0.15s linear, transform 0.15s linear,
+				right 0s 0.15s;
+			visibility: hidden;
+
+			li {
+				margin: 0;
+
+				& > ul {
+					padding-left: 10px;
+				}
+			}
+
+			a {
+				text-decoration: none;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+
+			// Sub menu arrow.
+			$light-style-sub-menu-arrow-width: 20px;
+			&::after,
+			&::before {
+				position: absolute;
+				bottom: 100%;
+				left: 22px;
+				width: 0;
+				height: 0;
+				border: solid transparent;
+				content: ' ';
+				pointer-events: none;
+			}
+
+			// Sub menu arrow. Background.
+			&::after {
+				bottom: calc(100% - 1px);
+				margin-left: -($light-style-sub-menu-arrow-width / 2);
+				border-width: $light-style-sub-menu-arrow-width / 2;
+			}
+
+			// Sub menu arrow. Border.
+			&::before {
+				margin-left: -($light-style-sub-menu-arrow-width / 2 + 1px);
+				border-width: $light-style-sub-menu-arrow-width / 2 + 1px;
+			}
+
+			ul {
+				width: 100%;
+			}
+		}
+	}
+
+	// Navigation Link
+	a {
+		display: block;
+		padding: 16px;
+	}
+
+	// Sub-menu depth indicators
+	ul ul {
+		list-style: none;
+		margin-left: 0;
+
+		li a {
+			padding-top: 8px;
+			padding-bottom: 8px;
+
+			&:first-child {
+				padding-top: 13px;
+			}
+
+			&:last-child {
+				padding-bottom: 13px;
+			}
+		}
+	}
+
+	&.items-justified-left > ul {
+		justify-content: flex-start;
+	}
+
+	&.items-justified-center > ul {
+		justify-content: center;
+	}
+
+	&.items-justified-right > ul {
+		justify-content: flex-end;
+	}
+
+	// Colors.
+	$light-style-sub-menu-background-color: #fff;
+	$light-style-sub-menu-border-color: #e2e4e7;
+	$light-style-sub-menu-text-color: #111;
+	$light-style-sub-menu-text-color-hover: #333;
+
+	$dark-style-sub-menu-background-color: #333;
+	$dark-style-sub-menu-border-color: #111;
+	$dark-style-sub-menu-text-color: #fff;
+	$dark-style-sub-menu-text-color-hover: #eee;
+
+	// Default Style / Ligth style.
+	& > ul > li > ul,
+	&.is-light-style > ul > li > ul {
+		border-color: $light-style-sub-menu-border-color;
+		background-color: $light-style-sub-menu-background-color;
+
+		a {
+			color: $light-style-sub-menu-text-color;
+
+			&:hover {
+				color: $light-style-sub-menu-text-color-hover;
+			}
+		}
+
+		// Sub menu arrow - background color.
+		&::after {
+			border-color: transparent;
+			border-bottom-color: $light-style-sub-menu-background-color;
+		}
+
+		// Sub menu arrow - border color.
+		&::before {
+			border-color: transparent;
+			border-bottom-color: $light-style-sub-menu-border-color;
+		}
+	}
+
+	// Dark Style.
+	&.is-style-dark > ul > li > ul {
+		border-color: $dark-style-sub-menu-border-color;
+		background-color: $dark-style-sub-menu-background-color;
+
+		a {
+			color: $dark-style-sub-menu-text-color;
+
+			&:hover {
+				color: $dark-style-sub-menu-text-color-hover;
+			}
+		}
+
+		// Sub menu arrow - background color.
+		&::after {
+			border-bottom-color: $dark-style-sub-menu-background-color;
+		}
+
+		// Sub menu arrow - border color.
+		&::before {
+			border-bottom-color: $dark-style-sub-menu-border-color;
+		}
+	}
+}

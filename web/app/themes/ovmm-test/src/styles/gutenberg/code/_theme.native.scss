@@ -1,0 +1,22 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+
+.blockCode {
+	padding: 12px 16px;
+	border-radius: 4px;
+	background-color: $gray-light;
+	font-size: 14;
+	font-family: $default-monospace-font;
+}
+
+.blockCodeDark {
+	background-color: $gray-100;
+	color: $white;
+}
+
+.placeholder {
+	color: $gray;
+}
+
+.placeholderDark {
+	color: $gray-50;
+}

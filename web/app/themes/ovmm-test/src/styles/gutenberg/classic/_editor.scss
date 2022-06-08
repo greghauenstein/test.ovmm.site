@@ -1,0 +1,374 @@
+.wp-block-freeform.block-library-rich-text__tinymce {
+	p,
+	li {
+		line-height: $editor-line-height;
+	}
+
+	ul,
+	ol {
+		margin-left: 0;
+		padding-left: 2.5em;
+	}
+
+	blockquote {
+		margin: 0;
+		padding-left: 1em;
+		border-left: 4px solid $black;
+		box-shadow: inset 0 0 0 0 $light-gray-500;
+	}
+
+	pre {
+		color: $dark-gray-800;
+		font-size: $text-editor-font-size;
+		font-family: $editor-html-font;
+		white-space: pre-wrap;
+	}
+
+	> *:first-child {
+		margin-top: 0;
+	}
+
+	> *:last-child {
+		margin-bottom: 0;
+	}
+
+	&.mce-edit-focus {
+		outline: none;
+	}
+
+	a {
+		color: $blue-medium-700;
+	}
+
+	&:focus a[data-mce-selected] {
+		margin: 0 -2px;
+		padding: 0 2px;
+		border-radius: 2px;
+		background: $blue-medium-100;
+		box-shadow: 0 0 0 $border-width $blue-medium-100;
+	}
+
+	code {
+		padding: 2px;
+		border-radius: 2px;
+		background: $light-gray-200;
+		color: $dark-gray-800;
+		font-size: 14px;
+		font-family: $editor-html-font;
+	}
+
+	&:focus code[data-mce-selected] {
+		background: $light-gray-400;
+	}
+
+	.alignright {
+		/*rtl:ignore*/
+		float: right;
+		/*rtl:ignore*/
+		margin: 0.5em 0 0.5em 1em;
+	}
+
+	.alignleft {
+		/*rtl:ignore*/
+		float: left;
+		/*rtl:ignore*/
+		margin: 0.5em 1em 0.5em 0;
+	}
+
+	.aligncenter {
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.wp-more-tag {
+		display: block;
+		width: 96%;
+		height: 20px;
+		margin: 15px auto;
+		outline: 0;
+		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADtgAAAAoBAMAAAA86gLBAAAAJFBMVEVMaXG7u7vBwcHDw8POzs68vLzGxsbMzMy+vr7AwMDQ0NDGxsYKLGzpAAAADHRSTlMA///zWf+/f///TMxNVGuqAAABwklEQVR4Ae3dMXLaQBTH4bfj8UCpx8hq0vgKvgFNemhT6Qo6gg6R+0ZahM2QLmyBJ99XWP9V5+o3jIUcLQEAAAAAAAAAAAAAAAAAAAAAAABQ8j0WL9lfTtlt18uNXAUA8O/KVtfa1tdcrOdSh9gCQAMlh1hMNbZZ1bsrsQWABsrhLRbz7z5in/32UbfUMUbkMQCAh5RfGYv82UdMdZ6HS2wjT2ILAI8r3XmM2B3WvM59vfO2xXYW2yYAENuPU8S+X/N67mKxzy225yaxBQCxLV392UdcvwV0jPVUj98ntkBWT7C7+9u2/V/vGtvXIWJ6/4rtbottWa6Ri0NUT/u72LYttrb97LHdvUXMxxrb8TO2W2TF1rYbbLG1bbGNjMi4+2Sbi1FsbbvNFlvbFtt5fDnE3d9sP1/XeIyV2Nr2U2/guZUuptNrH/dPI9eLB6SaAEBs6wPJf3/PNk9tYgsAYrv/8TFuzx/fvkFqGtrEFgDEdpcZUb7ejXy6ntrEFgDENvL6gsas4vbdyKt4DACI7TxElJv/Z7udpqFNbAFAbKduy2uU2trttM/x28UWAAAAAAAAAAAAAAAAAAAAAAAAAADgDyPwGmGTCZp7AAAAAElFTkSuQmCC);
+		cursor: default;
+		background-size: 1900px 20px;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	/* Remove blue highlighting of selected images in WebKit */
+	img::selection {
+		background-color: transparent;
+	}
+
+	div.mceTemp {
+		-ms-user-select: element;
+	}
+
+	/* Image captions */
+	dl.wp-caption {
+		max-width: 100%;
+		margin: 0; /* dl browser reset */
+
+		a,
+		img {
+			display: block;
+		}
+
+		&,
+		& * {
+			-webkit-user-drag: none;
+		}
+
+		.wp-caption-dd {
+			margin: 0; /* browser dd reset */
+			padding-top: 0.5em;
+		}
+	}
+
+	/* WP Views */
+	.wpview {
+		position: relative;
+		width: 99.99%; /* All IE need hasLayout, incl. 11 (ugh, not again!!) */
+		margin-bottom: 16px;
+		border: 1px solid transparent;
+		clear: both;
+
+		iframe {
+			display: block;
+			max-width: 100%;
+			background: transparent;
+		}
+
+		.mce-shim {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+
+		&[data-mce-selected='2'] .mce-shim {
+			display: none;
+		}
+
+		.loading-placeholder {
+			padding: 10px;
+			border: 1px dashed $light-gray-400;
+		}
+
+		.wpview-error {
+			margin: 0;
+			padding: 1em 0;
+			border: 1px solid $light-gray-400;
+			word-wrap: break-word;
+
+			p {
+				margin: 0;
+				text-align: center;
+			}
+		}
+
+		&[data-mce-selected] .loading-placeholder,
+		&[data-mce-selected] .wpview-error {
+			border-color: transparent;
+		}
+
+		.dashicons {
+			display: block;
+			width: 32px;
+			height: 32px;
+			margin: 0 auto;
+			font-size: 32px;
+		}
+
+		// The following gallery styles were replicated
+		// from the styles applied in the tinymce skin,
+		// /wp-includes/js/tinymce/skins/wordpress/wp-content.css.
+		&.wpview-type-gallery::after {
+			display: table;
+			content: '';
+			clear: both;
+		}
+	}
+
+	.gallery img[data-mce-selected]:focus {
+		outline: none;
+	}
+
+	.gallery a {
+		cursor: default;
+	}
+
+	.gallery {
+		margin: auto -6px;
+		padding: 6px 0;
+		line-height: 1;
+		overflow-x: hidden;
+	}
+
+	.gallery .gallery-item {
+		margin: 0;
+		padding: 6px;
+		text-align: center;
+		float: left;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	.gallery .gallery-caption,
+	.gallery .gallery-icon {
+		margin: 0;
+	}
+
+	.gallery .gallery-caption {
+		margin: 4px 0;
+		font-size: 13px;
+	}
+
+	@for $i from 1 through 9 {
+		.gallery-columns-#{ $i } .gallery-item {
+			width: #{(100 / $i) + '%'};
+		}
+	}
+
+	.gallery img {
+		height: auto;
+		max-width: 100%;
+		padding: 0;
+		border: none;
+	}
+}
+
+div[data-type='core/freeform'] {
+	&::before {
+		transition: border-color 0.1s linear, box-shadow 0.1s linear;
+		@include reduce-motion('transition');
+		border: $border-width solid $light-gray-500;
+
+		// Windows High Contrast mode will show this outline.
+		outline: $border-width solid transparent;
+	}
+
+	&.is-selected::before {
+		border-color: $light-gray-800;
+		border-left-color: transparent;
+	}
+
+	.block-editor-block-contextual-toolbar + div {
+		margin-top: 0;
+		padding-top: 0;
+	}
+
+	// Ensure aligned blocks at end are within the selected block.
+	&.is-selected .block-library-rich-text__tinymce::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+// mce global styles: the toolbars may get appended to <body>
+.mce-toolbar-grp {
+	// Not sure why this is necessary, there seems to be a skin file that
+	// overrides this upstream.
+	.mce-btn.mce-active button,
+	.mce-btn.mce-active:hover button,
+	.mce-btn.mce-active i,
+	.mce-btn.mce-active:hover i {
+		color: $dark-gray-800;
+	}
+
+	// Prevent toolbar clipping on heading style in RTL languages
+	.mce-rtl .mce-flow-layout-item.mce-last {
+		margin-right: 0;
+		margin-left: 8px;
+	}
+
+	// Prevent i tags in buttons from picking up theme editor styles.
+	.mce-btn i {
+		font-style: normal;
+	}
+}
+
+.block-library-classic__toolbar {
+	position: sticky;
+	top: $block-padding;
+	// Only display the classic toolbar when the classic block is selected or when the
+	// block is empty or loading and the placeholder should be displayed.
+	display: none;
+	width: auto;
+	margin: 0 #{-$block-padding};
+
+	// On mobile, toolbars go edge to edge.
+	padding: 0;
+	border: $border-width solid $light-gray-500;
+	border-bottom: none;
+	transform: translateY(-$block-padding);
+	z-index: z-index('.block-library-classic__toolbar');
+
+	// By using the `data-type` attribute in this selector it ensures these styles only appear
+	// when the block itself is selected, without it they would also show when a parent block
+	// is selected.
+	div[data-type='core/freeform'].is-selected &,
+	div[data-type='core/freeform'].is-typing & {
+		display: block;
+		border-color: $light-gray-800;
+	}
+
+	// Remove the box shadow to mimic other Gutenberg UI.
+	.mce-tinymce {
+		box-shadow: none;
+	}
+
+	@include break-small() {
+		padding: 0;
+	}
+
+	&:empty {
+		display: block;
+		border-bottom: $border-width solid #e2e4e7;
+		background: #f5f5f5;
+
+		&::before {
+			padding: $block-padding;
+			color: #555d66;
+			font-size: $default-font-size;
+			font-family: $default-font;
+			content: attr(data-placeholder);
+			line-height: 37px;
+		}
+	}
+
+	// Overwrite inline styles.
+	.mce-tinymce-inline,
+	.mce-tinymce-inline > div,
+	div.mce-toolbar-grp,
+	div.mce-toolbar-grp > div,
+	.mce-menubar,
+	.mce-menubar > div {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	.mce-container-body.mce-abs-layout {
+		overflow: visible;
+	}
+
+	.mce-menubar,
+	div.mce-toolbar-grp {
+		position: static;
+	}
+
+	// Adjust padding to not cause a jump.
+	.mce-toolbar-grp > div {
+		padding: 1px 3px;
+	}
+
+	.mce-toolbar-grp .mce-toolbar:not(:first-child) {
+		display: none;
+	}
+
+	&.has-advanced-toolbar .mce-toolbar-grp .mce-toolbar {
+		display: block;
+	}
+}

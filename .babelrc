@@ -1,0 +1,14 @@
+{
+  "presets": [["minify", {
+    "keepFnName": true,
+    "deadcode": false,
+	  "builtIns": false
+  }],
+  [
+    "@babel/preset-env",
+    {
+      "useBuiltIns": "entry",
+      "corejs": "core-js@2"
+    }
+  ]]
+}

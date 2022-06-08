@@ -1,0 +1,225 @@
+@import 'bootstrap/scss/forms';
+@import './variables';
+@import './mixins';
+
+// "Label: Name, Phone etc."
+$top-label-font-weight: 700;
+$top-label-font-size: 14px;
+
+// "First Name, Last Name etc."
+$sub-label-font-size: 12px;
+
+// Asterisk * beside fields.
+$required-field-color: #dc3a35;
+
+// Spacing underneath the inputs.
+$field-margin-bottom: (
+	mobile: 20px,
+	sm: 20px,
+	md: 20px,
+	lg: 20px,
+	xl: 20px
+);
+
+.form-control {
+	appearance: none;
+	font-size: 14px;
+
+	&::placeholder {
+	}
+	&:not(.form-control--alt) {
+	}
+}
+.form-control--alt {
+	height: 46px;
+	padding: 4px 24px;
+	border: none;
+	border-radius: 2px;
+}
+
+.form-label {
+	margin-bottom: 16px;
+	color: $color-black;
+	font-weight: $top-label-font-weight;
+	font-size: $top-label-font-size;
+}
+
+// Let's add bootstraps styles to gravity forms natively.
+// Only targetting items within the gform class.
+.gform_body {
+	input[type='text'],
+	select,
+	textarea {
+		@extend .form-control;
+	}
+
+	select {
+		@extend select.form-control;
+	}
+
+	// Turn off bullets, padding, margin that is inherited from global/.rte styles.
+	.gform_fields {
+		margin: 0 !important;
+		padding: 0 !important;
+		list-style: none !important;
+	}
+
+	.ginput_complex {
+		display: flex;
+		margin-right: -$grid-gutter-width/2;
+		margin-left: -$grid-gutter-width/2;
+		flex-wrap: wrap;
+
+		// Make inputs inside 'complex' containers full width on phone
+		// and equally spaced among the grid above.
+		> span {
+			max-width: 100%;
+			padding: 0 $grid-gutter-width/2;
+			flex: 0 0 100%;
+
+			// Above MD the items in a 'complex' ginput container will be sized to fit in a row.
+			@include media-breakpoint-up(md) {
+				flex: 1;
+
+				&.ginput_full {
+					flex: 0 0 100% !important;
+				}
+
+				&.ginput_left,
+				.ginput_right {
+					flex: 0 0 50% !important;
+				}
+			}
+		}
+	}
+
+	// Small labels below the inputs.
+	.ginput_complex > span label,
+	.gfield_description {
+		margin-top: 4px;
+		margin-bottom: 12px;
+		font-size: $sub-label-font-size;
+	}
+
+	.gfield_label {
+		margin-bottom: 16px;
+		color: $color-black;
+		font-weight: $top-label-font-weight;
+		font-size: $top-label-font-size;
+	}
+	.gfield_required {
+		display: inline-block;
+		margin-left: 2px;
+		color: $required-field-color;
+	}
+
+	.gfield {
+		margin-bottom: map-get($field-margin-bottom, mobile);
+
+		@include media-breakpoint-up(sm) {
+			margin-bottom: map-get($field-margin-bottom, sm);
+		}
+		@include media-breakpoint-up(md) {
+			margin-bottom: map-get($field-margin-bottom, md);
+		}
+		@include media-breakpoint-up(lg) {
+			margin-bottom: map-get($field-margin-bottom, lg);
+		}
+		@include media-breakpoint-up(xl) {
+			margin-bottom: map-get($field-margin-bottom, xl);
+		}
+	}
+
+	.gfield_checkbox,
+	.gfield_radio {
+		@include reset-list;
+		position: relative;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-left: 0 !important;
+
+		li {
+			&:before {
+				display: none !important;
+			}
+		}
+
+		input[type='checkbox'] {
+			position: absolute;
+			opacity: 0;
+
+			&:before {
+				border-radius: 2px;
+			}
+
+			&:checked ~ label:before {
+				content: '';
+			}
+
+			&:checked ~ label:after {
+				position: absolute;
+				top: 6px;
+				left: 3px;
+				color: white;
+				font-weight: 600;
+				font-size: 8px;
+				font-family: --font-family-icons;
+				opacity: 1;
+				content: '\f00c';
+			}
+		}
+
+		input[type='radio'] {
+			position: absolute;
+			opacity: 0;
+
+			~ label:before {
+				border-radius: 100%;
+			}
+
+			&:checked ~ label:before {
+			}
+
+			&:checked ~ label:after {
+				position: absolute;
+				top: -1px;
+				left: 3px;
+				color: white;
+				font-weight: 600;
+				font-size: 17px;
+				font-family: default;
+				opacity: 1;
+				content: '•';
+			}
+		}
+
+		label {
+			position: relative;
+			padding-left: 28px;
+			cursor: pointer;
+			user-select: none;
+
+			&:after {
+				opacity: 0;
+				transition: 0.25s ease all;
+			}
+			&:before {
+				position: absolute;
+				top: 0.3rem;
+				left: 0;
+				display: inline-block;
+				width: 14px;
+				height: 14px;
+				margin: auto;
+				border: 1px solid grey;
+				overflow: hidden;
+				content: '';
+				transition: 0.25s ease all;
+			}
+		}
+	}
+
+	.screen-reader-text {
+		@include sr-only;
+	}
+}

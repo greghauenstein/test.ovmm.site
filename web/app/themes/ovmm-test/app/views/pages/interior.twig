@@ -1,0 +1,17 @@
+{# Interior Page Template #}
+{% extends "layouts/base.twig" %}
+
+
+{% block content %}
+
+	<h1>{{ post.title }}</h1>
+
+	{% if function('is_edit_page') %}
+		<div id="drop-zone"></div>
+	{% endif %}
+
+	{% block page_content %}
+		{{ post.content }}
+	{% endblock %}
+
+{% endblock %}

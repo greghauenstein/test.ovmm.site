@@ -1,0 +1,29 @@
+.wp-block-separator {
+	// Default, thin style, is stored in theme.scss so it can be opted out of
+
+	// Wide style
+	&.is-style-wide {
+		border-bottom-width: 1px;
+	}
+
+	// Dots style
+	&.is-style-dots {
+		height: auto;
+		max-width: none;
+		border: none;
+		// Override any background themes often set on the hr tag for this style.
+		// also override the color set in the editor since it's intented for normal HR
+		background: none !important;
+		text-align: center;
+		line-height: 1;
+
+		&::before {
+			padding-left: 2em;
+			color: currentColor;
+			font-size: 20px;
+			font-family: serif;
+			content: '\00b7 \00b7 \00b7';
+			letter-spacing: 2em;
+		}
+	}
+}

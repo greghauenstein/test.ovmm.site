@@ -1,0 +1,25 @@
+.wp-block-quote {
+	p {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&.is-style-large,
+	&.is-large {
+		margin: 0 0 16px;
+		padding: 0 1em;
+
+		p {
+			font-style: italic;
+			font-size: 24px;
+			line-height: 1.6;
+		}
+
+		cite,
+		footer {
+			font-size: 18px;
+			text-align: right;
+		}
+	}
+}
