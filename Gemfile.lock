@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:greghauenstein/plugin-capistrano-wpcli
-  revision: f3b6b80603cc36d1a51a954329b3b4ba9fb30a20
+  revision: c950be1fcf265067bd5106753ea7a24c07831014
   specs:
     capistrano-wpcli (0.1.9)
       capistrano (~> 3.6)
@@ -21,22 +21,22 @@ GEM
       capistrano (>= 3.0.0.pre)
     capistrano-upload-config (0.8.2)
       capistrano (>= 3.0)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.10)
     dotenv (2.5.0)
     ed25519 (1.3.0)
     highline (2.0.3)
-    i18n (1.8.2)
+    i18n (1.10.0)
       concurrent-ruby (~> 1.0)
-    net-scp (2.0.0)
-      net-ssh (>= 2.6.5, < 6.0.0)
-    net-ssh (5.2.0)
-    rake (13.0.1)
-    sshkit (1.21.0)
+    net-scp (3.0.0)
+      net-ssh (>= 2.6.5, < 7.0.0)
+    net-ssh (6.1.0)
+    rake (13.0.6)
+    sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
 
 PLATFORMS
-  ruby
+  x86_64-darwin-19
 
 DEPENDENCIES
   bcrypt_pbkdf (>= 1.0, < 2.0)
