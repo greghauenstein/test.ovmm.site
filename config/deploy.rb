@@ -9,10 +9,10 @@ set :application, "ovmm-test"
 # staging server: /home/staging/public_html/[application].com. If this is
 # different from the application change it here. For example the application
 # name could be `barack-obama` but the domain would be `obama.org`
-set :domain,      "#{fetch(:application)}.com"
+set :domain,      "test.onevoice.site"
 
 # Repo defaults to the name of the application, if it is different change that here
-set :repo_url,    "git@github.com:greghauenstein/#{fetch(:application)}.git"
+set :repo_url,    "git@github.com:greghauenstein/test.ovmm.site.git"
 
 # Theme Path - used in compiling the production assets, by default the
 # theme name will match the application name, if that's different change here.
